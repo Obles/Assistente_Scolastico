@@ -1,0 +1,86 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python packaging / build
+dist/
+site/
+*.egg-info/
+.eggs/
+
+# Tool caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# =========================
+# Environment / secrets
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Logs
+# =========================
+*.log
+pipeline.log
+
+# =========================
+# Build folders
+# =========================
+build/
+freud-kb/build/
+freud-kb/data/
+# =========================
+# Node / frontend
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+# VS Code / IDE
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Archives / temporary exports
+# =========================
+*.zip
+*.tar
+*.gz
+*.7z
+
+# =========================
+# Optional: local data outputs
+# Valuta tu se tenerli versionati
+# =========================
+# data/
+# *.csv
