@@ -39,7 +39,7 @@ COLLECTION = os.getenv("COLLECTION", "freud_kb")
 COLLECTION_DOCS = os.getenv("COLLECTION_DOCS", "freud_docs")
 
 # Ollama
-OLLAMA_EMBED_URL = os.getenv("OLLAMA_EMBED_URL", os.getenv("OLLAMA_URL", "http://localhost:11434/api/embeddings"))
+OLLAMA_EMBED_URL = os.getenv("OLLAMA_EMBED_URL", os.getenv("OLLAMA_URL", "http://localhost:11434/api/embed"))
 OLLAMA_CHAT_URL  = os.getenv("OLLAMA_CHAT_URL",  "http://localhost:11434/api/chat")
 
 # Modelli CPU-friendly
