@@ -31,7 +31,7 @@ script_05 = """# scripts/03b_index_documents.py
 script_06 = """# scripts/common_config.py
 [... inserisci qui il contenuto completo dello script Index Chroma ...]
 """
-script_07 = """# scripts/run_pipeline.py
+script_07 = """# scripts/04_run_pipeline.py
 [... inserisci qui il contenuto completo dello script Index Chroma ...]
 """
 script_08 = """# scripts/chat_ragNew.py
@@ -45,6 +45,6 @@ script_08 = """# scripts/chat_ragNew.py
 (scripts_dir / '03_index_freud.py').write_text(script_04, encoding='utf-8')
 (scripts_dir / '03b_index_documents.py').write_text(script_05, encoding='utf-8')
 (scripts_dir / 'common_config.py').write_text(script_06, encoding='utf-8')
-(scripts_dir / 'run_pipeline.py').write_text(script_07, encoding='utf-8')
+(scripts_dir / '04_run_pipeline.py').write_text(script_07, encoding='utf-8')
 (scripts_dir / 'chat_ragNew.py').write_text(script_08, encoding='utf-8')
 print("Project skeleton created at", root.resolve())
