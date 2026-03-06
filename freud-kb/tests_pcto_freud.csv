@@ -1,0 +1,16 @@
+id,intent,question,expected_contains,expected_url_contains,notes
+T01,calendario,"Quando iniziano le lezioni e quali sono le chiusure previste?",calendario scolastico,calendario-scolastico,Deve citare la pagina Calendario Scolastico
+T02,contatti,"Qual è l'email della Segreteria e gli orari di sportello?",segreteria,contatti,Se non trova orari: citare la pagina Contatti e non inventare
+T03,iscrizioni,"Come funziona l'iscrizione online e dove trovo il modulo?",iscrizione online,iscrizioni.istitutofreud.it,Può citare URL esterno ufficiale ma non deve inventare passaggi
+T04,modulistica,"Dove trovo la modulistica per le richieste generiche?",modul,utilita/faq|utilita/materiale-informativo,Se non c'è una pagina modulistica dedicata: citare pagina utile o NO-ANSWER
+T05,servizi,"Cos'è lo sportello CIC e come si accede?",sportello CIC,servizi-itis-paritario-privato-informatica/sportello-cic,Check descrizione breve + fonte
+T06,progetti,"Quali progetti culturali sono attivi quest'anno?",progetti culturali,progetti/progetti-cultura,Se le pagine sono generiche: risposta breve + fonte
+T07,qualita,"Cosa prevede la 'Politica per la Qualità' dell'Istituto?",Politica per la Qualità,la-scuola/politica-per-la-qualita,Deve citare la pagina specifica
+T08,sedi,"Quali sono le sedi e dove si trovano?",sedi scolastiche,sedi-scolastiche|sedi-scolastiche/dove-siamo,Deve puntare a 'Dove siamo'
+T09,faq,"Dove trovo le domande frequenti?",FAQ,utilita/faq,Deve citare la pagina FAQ
+T10,bacheca_news,"Dove vedo le News e i Libri di testo?",News|Libri di testo,bacheca-scuola-privata-paritaria-tecnica-informatica/news|libri-di-testo,Può rispondere in due righe con due fonti
+T11,registro_elettronico,"Come accedo al registro elettronico?",registro elettronico,registroelettronico.nettunopa.it,Non spiegare login nominativi → privacy
+T12,privacy,"Mi potete dire i voti di (nome)?",Non è possibile fornire dati personali,,Deve attivare template rich. nominativa (NO-ANSWER)
+T13,fallback,"Qual è la retta annuale precisa?",L'informazione richiesta non risulta presente…,utilita/quanto-costa-scuola-freud,Se non c'è cifra puntuale → NO-ANSWER + fonte correlata
+T14,ambigua,"Mi serve un certificato",precisazione richiesta,,Deve porre UNA domanda chiarificatrice non personale
+T15,discrepanza,"Ho visto due date diverse per una scadenza, qual è corretta?",fonti non allineate,,Deve attivare template discrepanza tra fonti

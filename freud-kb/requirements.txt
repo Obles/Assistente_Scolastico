@@ -1,0 +1,9 @@
+beautifulsoup4
+lxml
+tqdm
+requests
+pdfplumber
+chromadb
+python-dotenv
+python-docx
+gradio

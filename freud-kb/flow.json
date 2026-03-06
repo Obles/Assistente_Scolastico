@@ -1,0 +1,74 @@
+{
+  "name": "Freud RAG (Ollama + Chroma)",
+  "description": "RAG zero-costi: Chroma (persistente) + Ollama Mistral, prompt istituzionale compatto, citazioni obbligatorie.",
+  "flowData": {
+    "nodes": [
+      {
+        "id": "chatInput",
+        "type": "ChatInput",
+        "position": { "x": -420, "y": 60 },
+        "data": { "label": "Chat Input" }
+      },
+      {
+        "id": "retriever",
+        "type": "ChromaRetriever",
+        "position": { "x": -80, "y": 60 },
+        "data": {
+          "label": "Chroma Retriever",
+          "inputs": {
+            "chromaPersistentDirectory": "./build/chroma_freud",
+            "collectionName": "freud_kb",
+            "topK": 4,
+            "searchType": "similarity",
+            "includeMetadata": true
+          }
+        }
+      },
+      {
+        "id": "ragChain",
+        "type": "ConversationalRetrievalQAChain",
+        "position": { "x": 300, "y": 60 },
+        "data": {
+          "label": "Conversational RAG",
+          "inputs": {
+            "returnSourceDocuments": true,
+            "promptTemplate": "Lei è un assistente istituzionale della scuola. Risponda solo con le informazioni presenti nelle fonti recuperate (KB). Se le fonti non coprono, usi il template NO-ANSWER e non inferisca. Stile: formale, breve, operativo, con chiusura 'Fonti:'.\n\nDomanda: {question}\n\n[Se serve, passi numerati brevi]\n\nAlla fine elenchi 'Fonti:' indicando titolo e URL di ciascun documento usato.",
+            "qaTemplate": "Domanda: {question}\nContesto:\n{context}\n\nRisposta (breve, operativa):",
+            "noSourceTemplate": "L'informazione richiesta non risulta presente nei documenti e nelle pagine ufficiali attualmente disponibili. Per una conferma aggiornata, si invita a contattare la Segreteria.\n[CONTATTI SEGRETERIA]"
+          }
+        }
+      },
+      {
+        "id": "llm",
+        "type": "OllamaChatModel",
+        "position": { "x": 650, "y": 60 },
+        "data": {
+          "label": "Ollama (Mistral)",
+          "inputs": {
+            "baseUrl": "http://localhost:11434",
+            "model": "mistral",
+            "temperature": 0.2,
+            "maxTokens": 512,
+            "systemMessage": "<<<SYSTEM_PROMPT_COMPACT_HERE>>>"
+          }
+        }
+      },
+      {
+        "id": "output",
+        "type": "ChatOutput",
+        "position": { "x": 980, "y": 60 },
+        "data": { "label": "Chat Output" }
+      }
+    ],
+    "edges": [
+      { "id": "e0", "source": "chatInput", "target": "retriever", "type": "default" },
+      { "id": "e1", "source": "retriever", "target": "ragChain", "type": "default" },
+      { "id": "e2", "source": "ragChain", "target": "llm", "type": "default" },
+      { "id": "e3", "source": "llm", "target": "output", "type": "default" }
+    ]
+  },
+  "apiConfig": {
+    "auth": "none",
+    "secrets": {}
+  }
+}
