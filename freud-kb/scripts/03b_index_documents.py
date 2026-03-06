@@ -78,31 +78,24 @@ def _sanitize_for_embed(s: str) -> str:
 # ------------------------------------------------------------------------------
 # Helpers
 # ------------------------------------------------------------------------------
-# def chunk_text(text: str, target: int = TARGET_CHARS, min_chars: int = MIN_CHARS, overlap: int = OVERLAP_CHARS):
-#     """Chunking a finestra con tentativo soft di chiusura frase."""
-#     txt = (text or "").strip()
-#     n = len(txt)
-#     if n < min_chars:
-#         return []
-#     if n <= target:
-#         return [txt]
-
 def chunk_text(text: str, target: int = TARGET_CHARS, min_chars: int = MIN_CHARS, overlap: int = OVERLAP_CHARS):
-    """Chunking a finestra con tentativo soft di chiusura frase."""
+    """Chunking a finestra; tenta di chiudere a confine frase per evitare tagli duri."""
     txt = (text or "").strip()
     n = len(txt)
+
+    if overlap >= target:
+        raise ValueError("overlap must be smaller than target")
+
     if n < min_chars:
-        # Non perdere documenti/pagine molto corti (es. "Contattaci")
-        return [txt] if n > 0 else []
+        return [txt]
     if n <= target:
         return [txt]
 
     out = []
     start = 0
+
     while start < n:
         stop = min(start + target, n)
-
-        # prova ad estendere fino a fine frase (punteggiatura + maiuscola)
         ext_slice = txt[stop: stop + 100]
         m = re.search(r"([\.!?])\s+[A-ZÀ-ÖØ-Ý]", ext_slice)
         if m:
@@ -112,7 +105,11 @@ def chunk_text(text: str, target: int = TARGET_CHARS, min_chars: int = MIN_CHARS
         if len(chunk) >= min_chars:
             out.append(chunk)
 
-        start = max(stop - overlap, stop)
+        if stop >= n:
+            break
+
+        start = max(stop - overlap, 0)
+
     return out
 
 def build_session():

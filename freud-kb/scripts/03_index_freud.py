@@ -56,6 +56,10 @@ def chunk_text(text: str, target: int = TARGET_CHARS, min_chars: int = MIN_CHARS
     """Chunking a finestra; tenta di chiudere a confine frase per evitare tagli duri."""
     txt = (text or "").strip()
     n = len(txt)
+
+    if overlap >= target:
+        raise ValueError("overlap must be smaller than target")
+
     if n < min_chars:
         return [txt]
     if n <= target:
@@ -63,16 +67,23 @@ def chunk_text(text: str, target: int = TARGET_CHARS, min_chars: int = MIN_CHARS
 
     out = []
     start = 0
+
     while start < n:
         stop = min(start + target, n)
         ext_slice = txt[stop: stop + 100]
         m = re.search(r"([\.!?])\s+[A-ZÀ-ÖØ-Ý]", ext_slice)
         if m:
             stop = stop + m.start() + 1
+
         chunk = txt[start:stop].strip()
         if len(chunk) >= min_chars:
             out.append(chunk)
-        start = max(stop - overlap, stop)
+
+        if stop >= n:
+            break
+
+        start = max(stop - overlap, 0)
+
     return out
 
 def dedup_texts(pages):
