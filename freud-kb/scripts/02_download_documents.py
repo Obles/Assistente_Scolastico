@@ -1,4 +1,4 @@
-# scripts/03_download_documents.py
+# scripts/02_download_documents.py
 # Document Scanner & Downloader — Produce:
 #   (A) data/documents/*                        → file scaricati
 #   (B) build/<timestamp>/documents_index.jsonl → indice metadati
@@ -13,7 +13,7 @@
 # - DEBUG verboso e QUIET
 #
 # Esecuzione:
-#   python scripts/03_download_documents.py
+#   python scripts/02_download_documents.py
 
 import os
 import re

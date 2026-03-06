@@ -1,7 +1,7 @@
-# scripts/run_pipeline.py
+# scripts/04_run_pipeline.py
 # Esegue la pipeline Freud-KB in sequenza
 # Permette di scegliere lo step da cui partire:
-#    python run_pipeline.py 02
+#    python 04_run_pipeline.py 02
 # (parte da 02 e prosegue fino a 03b)
 
 import subprocess
