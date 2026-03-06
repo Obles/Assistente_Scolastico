@@ -211,12 +211,12 @@ def _year_from_last_modified(headers) -> int | None:
 
 def _year_from_url(url: str) -> int | None:
     # cerca /2026/ nel path
-    m = re.search(r"/(20\\d{2})/", url)
+    m = re.search(r"/(20\d{2})/", url)
     if m:
         return int(m.group(1))
     # cerca 2026 nel filename
     fname = Path(urlparse(url).path).name.lower()
-    m2 = re.search(r"(20\\d{2})", fname)
+    m2 = re.search(r"(20\d{2})", fname)
     if m2:
         return int(m2.group(1))
     return None
